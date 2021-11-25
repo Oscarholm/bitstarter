@@ -1,6 +1,7 @@
 
 var express = require('express');
 var fs = require('fs');
+var buffer = require('buffer');
 
 var app = express();
 
@@ -10,8 +11,8 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-    var buffer = Buffer.from(fs.readFileSync('index.html'));
-    response.send(buffer.toString());
+    var html = buffer.from(fs.readFileSync('index.html'));
+    response.send(html.toString());
 //  response.send('Hello World 2!')
 })
 
